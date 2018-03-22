@@ -3,9 +3,6 @@ druid:
     username: zl1030
     password: 111111
 
-server:
-  port: 9000
-
 management:
   security:
     # 关闭actuator鉴权，这样可以不验证调用/refresh刷新配置

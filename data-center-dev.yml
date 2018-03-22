@@ -2,3 +2,53 @@
 druid:
     username: zl1030
     password: 111111
+
+server:
+  port: 9000
+
+management:
+  security:
+    # 关闭actuator鉴权，这样可以不验证调用/refresh刷新配置
+    enabled: false
+
+spring:
+  datasource:
+    # 数据库连接池参数
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+
+    # 数据库参数
+    url: jdbc:mysql://127.0.0.1:3306/leviathan?characterEncoding=utf-8
+    username: root
+    password: 123456
+
+    # Druid设置
+    druid:
+      # 链接池链接初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 10
+      # 获取连接等待超时的时间
+      max-wait: 60000
+      # 间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: select now();
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: true
+      async-close-connection-enable: true
+  jpa:
+    hibernate:
+      # hibernate对表结构自动策略:
+      # create-drop:自动创建，应用关闭时删除
+      # update:根据model第一次会自动建表schema，可以自动加列升级列数据长度，但是model删除字段或缩数据长度不会更改表schema
+      ddl-auto: update
+    show-sql: true

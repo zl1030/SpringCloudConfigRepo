@@ -4,7 +4,7 @@ druid:
     password: 222222
 
 server:
-  port: 9000
+  port: 9001
 
 management:
   security:

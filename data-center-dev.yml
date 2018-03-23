@@ -15,7 +15,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
     # 数据库参数
-    url: jdbc:mysql://127.0.0.1:3306/leviathan?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/leviathan?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
 
